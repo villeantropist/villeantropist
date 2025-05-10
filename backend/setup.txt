@@ -1,0 +1,9 @@
+mkvirtualenv villeantropist
+pip install django
+
+django-admin startproject backend
+python manage.py startapp portfolios
+
+pip install django rest framework
+pip install djangorestframework 
+pip install pillow
