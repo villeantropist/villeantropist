@@ -38,7 +38,14 @@ const NavBar = () => {
       </ul>
       {/* Mobile Menu Icon */}
       <Icon class="me-4 sm:hidden">
-        <MenuIcon onClick={() => setVisible(!visible)} />
+        <MenuIcon
+          onClick={() => setVisible(!visible)}
+          sx={{
+            transition: "transform 0.3s ease",
+            transform: visible ? "rotate(90deg)" : "rotate(0deg)",
+            cursor: "pointer",
+          }}
+        />
       </Icon>
 
       {/* Mobile Sidebar Menu */}
