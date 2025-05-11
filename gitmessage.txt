@@ -1,4 +1,4 @@
-<type>(<scope>): <short summary>
+#<type>(<scope>): <short summary>
 
 # Provide a short description of the change (max 72 characters)
 #
