@@ -24,6 +24,6 @@ dist-ssr
 *.sw?
 
 *setup.txt
-gitmessage.txt
+# gitmessage.txt
 *.env
 *__pycache__

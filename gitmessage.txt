@@ -1,0 +1,21 @@
+<type>(<scope>): <short summary>
+
+# Provide a short description of the change (max 72 characters)
+#
+# Example:
+#   feat(auth): add password reset functionality
+#   fix(dashboard): correct chart display on Safari
+#
+# --------------------
+# Optional body:
+#
+# - Explain the motivation for the change
+# - Highlight what was done
+# - Don't describe how (code already shows that)
+#
+# --------------------
+# Optional footer:
+#
+# - Use for breaking changes or issue references
+# - Example: Closes #123, BREAKING CHANGE: API auth header changed
+
