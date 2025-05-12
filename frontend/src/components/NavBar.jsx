@@ -6,11 +6,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 const NavBar = () => {
   const navigate = useNavigate();
   const navRoutes = [
-    { path: "/", label: "Home" },
-    { path: "/portfolios", label: "Portfolios" },
+    { path: "", label: "Home" },
+    { path: "/portfolio", label: "Portfolio" },
+    { path: "/hire", label: "Hire Me" },
     { path: "/blog", label: "Blog" },
-    { path: "/about", label: "About" },
-    { path: "/contact", label: "Contact" },
+    { path: "/about", label: "About Me" },
   ];
   const [visible, setVisible] = useState(false);
   return (
