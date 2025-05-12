@@ -38,7 +38,16 @@ export default {
         custombox3: '-1px -1px #0000, -1px -1px #0000, 0px 0px 0px 4px #1976d2',
         admin: '-1px -1px #0000, -1px -1px #0000, 0px 0px 0px 4px #ff0000',
       },
+      // text-shadow
+      textShadow: {
+        sm: '1px 1px 2px rgba(0, 0, 0, 0.5)',
+        DEFAULT: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+        lg: '4px 4px 6px rgba(0, 0, 0, 0.6)',
+      },
     },
   },
-  plugins: [],
+  // text-shadow requires a plugin
+  plugins: [
+    require('tailwindcss-textshadow')
+  ],
 };

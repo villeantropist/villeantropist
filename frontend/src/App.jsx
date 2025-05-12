@@ -18,8 +18,8 @@ const App = () => {
       <ToastContainer />
       <NavBar />
       <SearchBar />
-      <div className={`px-4 sm:px-[15vw] md:px-[17vw] lg:px-[22vw]`}>
-        <div className="px-4 sm:px-8 shadow-custom py-4">
+      <div className={`px-4 sm:px-[15vw] md:px-[17vw] lg:px-[22vw] py-0`}>
+        <div className="px-4 sm:px-8 shadow-custom py-10">
           <Routes>
             <Route path="/" element={<Home />} />
           </Routes>

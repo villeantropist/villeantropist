@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Title from "../components/Title";
 import Heading from "../components/Heading";
+import PortfolioCard from "../components/PortfolioCard";
+import Stacks from "../components/Stacks";
+import ReactPaginate from "react-paginate";
+import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
+import { assets } from "../assets/frontend_assets/assets";
+
 import {
   FaPython,
   FaReact,
@@ -10,8 +16,6 @@ import {
   FaJs,
   FaGlobe,
   FaGithub,
-  FaLock,
-  FaNetworkWired,
   FaLinkedinIn,
   FaXTwitter,
   FaFacebookF,
@@ -22,8 +26,6 @@ import {
   FaFlask,
   FaCalendarDays,
 } from "react-icons/fa6";
-
-import { assets } from "../assets/frontend_assets/assets";
 
 const Portfolio = () => {
   const stacks = [
@@ -36,13 +38,6 @@ const Portfolio = () => {
     { stack: "NodeJs", icon: <FaNode /> },
     { stack: "HTML", icon: <FaHtml5 /> },
     { stack: "CSS", icon: <FaCss3Alt /> },
-  ];
-
-  const projectStacks = [
-    { stack: "Python", icon: <FaPython /> },
-    { stack: "Django", icon: <FaJugDetergent /> },
-    { stack: "Django Rest Framework", icon: <FaRestroom /> },
-    { stack: "Flask", icon: <FaFlask /> },
   ];
 
   const urls = [
@@ -89,169 +84,94 @@ const Portfolio = () => {
       icon: <FaLinkedinIn />,
     },
   ];
-  function wordBreak(url) {
-    return url.replace(/([./?=&-_])/g, "$1\u200b"); // Adds line-break hints
-  }
 
-  function truncateUrl(url, maxLength = 150) {
+  const tags = [
+    { tag: "Web" },
+    { tag: "Automation" },
+    { tag: "WebScraping" },
+    { tag: "DataAnalysis" },
+  ];
+
+  const projectStacks = [
+    { stack: "Python", icon: <FaPython /> },
+    { stack: "Django", icon: <FaJugDetergent /> },
+    { stack: "Django Rest Framework", icon: <FaRestroom /> },
+    { stack: "Flask", icon: <FaFlask /> },
+  ];
+
+  const truncateUrl = (url, maxLength = 150) => {
     if (url.length <= maxLength) return url;
     return url.slice(0, maxLength) + "...";
-  }
+  };
+
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const filterPortfolio = [1, 2, 3, 4];
+  const portfolioPerPage = 10;
+  const offset = currentPage * portfolioPerPage;
+
+  const handlePageClick = useCallback(({ selected }) => {
+    setCurrentPage(selected);
+  }, []);
+
+  const currentItems = useMemo(
+    () => filterPortfolio.slice(offset, offset + portfolioPerPage),
+    [filterPortfolio, offset, portfolioPerPage]
+  );
+
+  const pageCount = Math.ceil(filterPortfolio.length / portfolioPerPage);
+
   return (
     <div className="flex flex-col gap-12">
       <section id="stacks">
         <div className="text-center">
-          <Title title="Stacks" className="mt-6" />
+          <Heading heading="Stacks" />
         </div>
         <div className="mx-auto">
-          <ul className="text-dark flex flex-wrap justify-center gap-6">
-            {stacks.map(({ stack, icon }, idx) => (
-              <li key={idx} className="flex items-center gap-1">
-                {icon}
-                {stack}
-              </li>
-            ))}
-          </ul>
+          <Stacks stacks={stacks} />
         </div>
       </section>
 
       <section id="portfolio">
         <div>
-          <Title title="Portfolio" className="mt-6" />
+          <Title title="Portfolio" />
         </div>
         <div className="flex flex-col gap-3">
           {/* Portfolio card */}
-          <div className="flex flex-col lg:flex-row gap-3 p-3 bg-customOrange-100 rounded-2xl">
-            <div className="w-full lg:max-w-[40%]">
-              <img
-                src={assets.image}
-                alt="project"
-                className="shadow-custombox rounded-2xl w-full"
-              />
-            </div>
-            <div className="flex flex-col w-full lg:max-w-[60%]">
-              <Heading heading="This a Django Ecommerce Website" />
-              <p className="text-sm mb-2">
-                {truncateUrl(
-                  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates corporis non eveniet ad voluptas quae hic placeat eligendi, necessitatibus, eaque, labore quas. Incidunt autem ab, nesciunt maxime tenetur quam nulla ex laudantium"
-                )}
-              </p>
+          {filterPortfolio.map(() => (
+            <PortfolioCard
+              image={assets.image2}
+              urls={urls}
+              tags={tags}
+              projectStacks={projectStacks}
+            />
+          ))}
+        </div>
 
-              {/* Links to project repo and social posts */}
-              {urls && (
-                <ul className="mb-3 flex flex-wrap gap-3">
-                  {urls.map(({ icon, title, url }, idx) => (
-                    <a
-                      key={idx}
-                      href={url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <li
-                        title={title}
-                        className="relative flex items-center gap-1"
-                      >
-                        <span className="shadow-custombox p-1 sm:p-2 bg-neutral-900 hover:bg-neutral-800 rounded-lg sm:rounded-xl text-white">
-                          {icon}
-                        </span>
-                        {title === "View Github repository" && (
-                          <span
-                            title="Repository is private. Contact me for access"
-                            className="absolute top-0 right-0 text-red-500"
-                          >
-                            <FaLock className="text-xs" />
-                          </span>
-                        )}
-                      </li>
-                    </a>
-                  ))}
-                </ul>
-              )}
-              {/* Tags */}
-              <div className="flex items-center mb-1 gap-1">
-                <span className="text-2xl font-bold">#</span>
-                <span className="text-md"> Web Automation </span>
-              </div>
-
-              <ul className="flex flex-wrap items-center gap-2 mb-1">
-                {projectStacks.map(({ stack, icon }, idx) => (
-                  <li key={idx} className="flex items-center gap-1">
-                    {icon}
-                    {stack}
-                  </li>
-                ))}
-              </ul>
-              <div className="flex items-center gap-2 text-sm">
-                <FaCalendarDays /> Updated <span>10/10/1910</span>
-              </div>
-            </div>
-          </div>
-          {/* Portfolio card */}
-          <div className="flex flex-col lg:flex-row gap-3 p-3 bg-customOrange-100 rounded-2xl">
-            <div className="w-full lg:max-w-[40%]">
-              <img
-                src={assets.image}
-                alt="project"
-                className="shadow-custombox rounded-2xl w-full"
-              />
-            </div>
-            <div className="flex flex-col w-full lg:max-w-[60%]">
-              <Heading heading="This a Django Ecommerce Website" />
-              <p className="text-sm mb-2">
-                {truncateUrl(
-                  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates corporis non eveniet ad voluptas quae hic placeat eligendi, necessitatibus, eaque, labore quas. Incidunt autem ab, nesciunt maxime tenetur quam nulla ex laudantium"
-                )}
-              </p>
-
-              {/* Links to project repo and social posts */}
-              {urls && (
-                <ul className="mb-3 flex flex-wrap gap-3">
-                  {urls.map(({ icon, title, url }, idx) => (
-                    <a
-                      key={idx}
-                      href={url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <li
-                        title={title}
-                        className="relative flex items-center gap-1"
-                      >
-                        <span className="shadow-custombox p-1 sm:p-2 bg-neutral-900 hover:bg-neutral-800 rounded-lg sm:rounded-xl text-white">
-                          {icon}
-                        </span>
-                        {title === "View Github repository" && (
-                          <span
-                            title="Repository is private. Contact me for access"
-                            className="absolute top-0 right-0 text-red-500"
-                          >
-                            <FaLock className="text-xs" />
-                          </span>
-                        )}
-                      </li>
-                    </a>
-                  ))}
-                </ul>
-              )}
-              {/* Tags */}
-              <div className="flex items-center mb-1 gap-1">
-                <span className="text-2xl font-bold">#</span>
-                <span className="text-md"> Web Automation </span>
-              </div>
-
-              <ul className="flex flex-wrap items-center gap-2 mb-1">
-                {projectStacks.map(({ stack, icon }, idx) => (
-                  <li key={idx} className="flex items-center gap-1">
-                    {icon}
-                    {stack}
-                  </li>
-                ))}
-              </ul>
-              <div className="flex items-center gap-2 text-sm">
-                <FaCalendarDays /> Updated <span>10/10/1910</span>
-              </div>
-            </div>
-          </div>
+        {/* React Paginate Component */}
+        <div className="mt-11">
+          <ReactPaginate
+            className="flex justify-center items-center gap-4"
+            pageCount={pageCount}
+            onPageChange={handlePageClick}
+            breakLabel={"⦁⦁⦁"}
+            pageRangeDisplayed={2}
+            marginPagesDisplayed={1}
+            activeLinkClassName={"bg-teal-500 text-white"}
+            pageLinkClassName={`bg-teal-100 px-2 py-1 border-2 rounded-md transition duration-300 ease-in-out hover:bg-teal-300 text-night_dark`}
+            previousLabel={
+              currentPage > 0 && (
+                <IoMdArrowRoundBack className="text-teal-500 hover:text-teal-700 w-6 h-6 border-2 rounded-full" />
+              )
+            }
+            previousAriaLabel={"Previous"}
+            nextLabel={
+              currentPage + 1 < pageCount && (
+                <IoMdArrowRoundForward className="text-teal-500 hover:text-teal-700 w-6 h-6 border-2 rounded-full" />
+              )
+            }
+            nextAriaLabel={"Next"}
+          />
         </div>
       </section>
     </div>

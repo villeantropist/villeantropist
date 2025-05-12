@@ -7,3 +7,5 @@ npx tailwindcss init -p
 npm install @mui/material @emotion/react @emotion/styled
 npm install @mui/material @mui/styled-engine-sc styled-components
 npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
+npm install react-
+npm install tailwindcss-textshadow
