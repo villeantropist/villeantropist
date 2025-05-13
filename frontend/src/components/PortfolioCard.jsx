@@ -12,7 +12,7 @@ const PortfolioCard = ({ image, urls, tags, projectStacks }) => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-3 p-3 bg-customOrange-100 rounded-2xl">
+    <div className="shadow-custombox flex flex-col lg:flex-row gap-3 p-3 bg-customOrange-100 rounded-2xl">
       <div className="w-full lg:max-w-[40%]">
         <img
           src={image}

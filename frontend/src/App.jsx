@@ -11,6 +11,7 @@ import Blog from "./pages/Blog";
 import About from "./pages/About";
 import HireMe from "./pages/HireMe";
 import Footer from "./components/Footer";
+import PortfolioDetails from "./pages/PortfolioDetails";
 
 const App = () => {
   return (
@@ -25,6 +26,9 @@ const App = () => {
           </Routes>
           <Routes>
             <Route path="/portfolio" element={<Portfolio />} />
+          </Routes>
+          <Routes>
+            <Route path="/portfolio/details" element={<PortfolioDetails />} />
           </Routes>
           <Routes>
             <Route path="/blog" element={<Blog />} />
