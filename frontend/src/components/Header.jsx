@@ -1,6 +1,6 @@
 import React from "react";
 
-const Heading = ({ heading }) => {
+const Header = ({ heading }) => {
   return (
     <div className="text-dark text-md md:text-xl lg:text-2xl font-bold">
       {heading}
@@ -8,4 +8,4 @@ const Heading = ({ heading }) => {
   );
 };
 
-export default Heading;
+export default Header;

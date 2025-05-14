@@ -1,5 +1,5 @@
 import React from "react";
-import Heading from "../components/Heading";
+import Header from "../components/Header";
 
 import { FaLock, FaCalendarDays } from "react-icons/fa6";
 import Tags from "./Tags";
@@ -21,7 +21,7 @@ const PortfolioCard = ({ image, urls, tags, projectStacks }) => {
         />
       </div>
       <div className="flex flex-col w-full lg:max-w-[60%]">
-        <Heading heading="This a Django Ecommerce Website" />
+        <Header heading="This a Django Ecommerce Website" />
         <p className="text-sm mb-2">
           {truncateUrl(
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates corporis non eveniet ad voluptas quae hic placeat eligendi, necessitatibus, eaque, labore quas. Incidunt autem ab, nesciunt maxime tenetur quam nulla ex laudantium"

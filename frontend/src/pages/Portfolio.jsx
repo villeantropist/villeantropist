@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Title from "../components/Title";
-import Heading from "../components/Heading";
+import Header from "../components/Header";
 import PortfolioCard from "../components/PortfolioCard";
 import Stacks from "../components/Stacks";
 import ReactPaginate from "react-paginate";
@@ -49,37 +49,37 @@ const Portfolio = () => {
     },
     {
       name: "Blog",
-      title: "View full project post on the blog",
+      title: "Project write-up",
       url: "https://www.villeantropist.com",
       icon: <FaLink />,
     },
     {
       name: "Website",
-      title: "Visit project website",
+      title: "Visit live project",
       url: "https://www.url.com",
       icon: <FaGlobe />,
     },
     {
       name: "Youtube",
-      title: "View Youtube video",
+      title: "Demo Video",
       url: "https://www.youtube.com",
       icon: <FaYoutube />,
     },
     {
       name: "X",
-      title: "View project social reaction on X",
+      title: "See on X",
       url: "https://www.x.com",
       icon: <FaXTwitter />,
     },
     {
       name: "Facebook",
-      title: "View project social reaction on Facebook",
+      title: "See on Facebook",
       url: "https://www.facebook.com",
       icon: <FaFacebookF />,
     },
     {
       name: "LinkedIn",
-      title: "View project social reaction on LinkedIn",
+      title: "See on LinkedIn",
       url: "https://www.linkedin.com",
       icon: <FaLinkedinIn />,
     },
@@ -125,7 +125,7 @@ const Portfolio = () => {
     <div className="flex flex-col gap-12">
       <section id="stacks">
         <div className="text-center">
-          <Heading heading="Stacks" />
+          <Header Header="Stacks" />
         </div>
         <div className="mx-auto">
           <Stacks stacks={stacks} />
