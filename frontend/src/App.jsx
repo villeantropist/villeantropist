@@ -15,7 +15,7 @@ import PortfolioDetailPage from "./pages/PortfolioDetailPage";
 
 const App = () => {
   return (
-    <div className={`bg-white text-gray-900 gap-0`}>
+    <div className={`bg-white text-gray-900 gap-0 p-0 m-0`}>
       <ToastContainer />
       <NavBar />
       <SearchBar />

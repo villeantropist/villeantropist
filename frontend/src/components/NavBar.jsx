@@ -60,7 +60,7 @@ const NavBar = () => {
 
       {/* Mobile Sidebar Menu */}
       <div
-        className={`sm:hidden bg-green-900 text-white transition-all duration-300 ease-in-out ${
+        className={`sm:hidden bg-neutral-800 text-white transition-all duration-200 ease-in-out ${
           menuOpen
             ? "max-h-96 opacity-100"
             : "max-h-0 opacity-0 overflow-hidden"
