@@ -1,6 +1,7 @@
 import React from "react";
-import Header from "../components/Header";
+import { NavLink } from "react-router-dom";
 
+import Header from "../components/Header";
 import { FaLock, FaCalendarDays } from "react-icons/fa6";
 import Tags from "./Tags";
 import ProjectStacks from "./ProjectStacks";
@@ -21,7 +22,12 @@ const PortfolioCard = ({ image, urls, tags, projectStacks }) => {
         />
       </div>
       <div className="flex flex-col w-full lg:max-w-[60%]">
-        <Header heading="This a Django Ecommerce Website" />
+        <NavLink
+          to={"/portfolio/details"}
+          className="hover:text-neutral-950 text-"
+        >
+          <Header heading="This a Django Ecommerce Website" />
+        </NavLink>
         <p className="text-sm mb-2">
           {truncateUrl(
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates corporis non eveniet ad voluptas quae hic placeat eligendi, necessitatibus, eaque, labore quas. Incidunt autem ab, nesciunt maxime tenetur quam nulla ex laudantium"
